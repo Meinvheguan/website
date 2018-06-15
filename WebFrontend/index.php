@@ -1,11 +1,8 @@
 <?php
-if(isset($_GET['name'])){ //if the user has logged in
-  header("Location:/backend/logedin.php?name=".urlencode($_GET['name']));
-}
-
-
-
-
+session_start();
+// if(isset($_GET['name'])){ //if the user has logged in
+//   header("Location:/backend/logedin.php?name=".urlencode($_GET['name']));
+// }
 ?>
 
 
@@ -41,9 +38,10 @@ if(isset($_GET['name'])){ //if the user has logged in
 
 	<main>
 
+    <h1><a href="index.html">Company Name</a></h1>
+<?php
+if (!isset($_SESSION['name'])){//if there is no logged session?>
 	<header>
-
-		<h1><a href="index.html">Company Name</a></h1>
       <nav class="topbar">
         <ul class="menu">
           <li><a href="backend/signup.php">Register</a></li>
@@ -55,6 +53,11 @@ if(isset($_GET['name'])){ //if the user has logged in
 		<hr color="lightgrey" size="1" width="90%">
 
 	</header>
+<?php } else {?>
+
+
+<?php } ?>
+
 
 
 <!--
@@ -165,15 +168,27 @@ if(isset($_GET['name'])){ //if the user has logged in
     <!-- <div class="search">
         <img src="img/search.png">
     </div> -->
+    <?php if (!isset($_SESSION['name'])){//if there is no logged session ?>
+      <div>
+          <nav class="botbar">
+              <ul class="menu2">
+                  <li><a href="#">About</a></li>
 
-    <div>
-        <nav class="botbar">
-            <ul class="menu2">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
+              </ul>
+          </nav>
+      </div>
+    <?php } else {?>
+
+      <div>
+          <nav class="botbar">
+              <ul class="menu2">
+                  <li><a href="backend/logout.php">Log Out</a></li>
+
+              </ul>
+          </nav>
+      </div>
+    <?php } ?>
+
 
 
 	<footer>
