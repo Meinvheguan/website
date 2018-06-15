@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "pdo.php";//connect to the database
 
 // p' OR '1' = '1
@@ -16,18 +17,27 @@ if ( isset($_POST['email']) && isset($_POST['password'])  ) {//check input
         ':em' => $_POST['email'],
         ':pw' => $_POST['password']));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
     // var_dump($row);  //see the array
    if ( $row === FALSE ) {//input in the database or not
-      echo "<h1>Login incorrect.</h1>\n";
+     $_SESSION['error'] = "Incorrect information!";
+      header('Location:login.php');
+      return;
    } else {
-      echo "<p>Login success.</p>\n";
+      $_SESSION['success'] = 'Login Succeeded!';
+      $_SESSION['name'] = $row['name'];
       // print_r($_POST);
-      header("Location:logedin.php?name=".$row['name']);//switch to the logged in page
+      header("Location:../index.php");//switch to the logged in page
+      return;
    }
 }
 ?>
 <p>Please Login</p>
+<?php
+if(isset($_SESSION['error'])){
+  echo $_SESSION['error'];
+}
+?>
 <form method="post">
 <p>Email:
 <input type="text" size="40" name="email"></p>
