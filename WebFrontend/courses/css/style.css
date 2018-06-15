@@ -1,0 +1,273 @@
+h1 {
+	display: inline-block;
+	color: rgb(50, 50, 50);
+}
+
+footer, h1{
+	padding: 0px 15px 0px 15px;
+}
+
+h1 a {
+	text-decoration: none;
+	color: rgb(50, 50, 50);
+}
+
+/****************
+NAVIGATION
+****************/
+
+nav.topbar {
+    float: right;
+    display: inline-block;
+    padding-top: 20px;
+    padding-right: 30px;
+}
+
+nav.botbar {
+	float: left;
+    display: inline-block;
+    padding: 5px;
+}
+
+ul.menu,
+ul.menu2 {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.menu li,
+ul.menu2 li{
+	display: inline-block;
+	font-size: 18px;
+}
+
+li a {
+	display: block;
+	text-align: center;
+	width: 100px;
+	padding: 10px;
+	text-decoration: none;
+	color: rgb(50, 50, 50);
+	transition: all 800ms ease;
+}
+
+nav.topbar a:hover {
+    background-color: lightgray; 
+    color: black; 
+}
+
+nav.botbar {
+	background-color: rgb(250, 250, 250);
+	color: black;
+}
+
+
+/***********************
+SIDEBAR
+***********************/
+
+div.sidebar {
+	background: url(../../img/concrete-texture.png);
+	height: 330px;
+	width: 10%;
+	min-width: 130px;
+	position: fixed;
+	left: 18%;
+	top: 180px;
+	display: inline-block;
+	float: left;
+	border: 2px dotted rgba(100,100,100,0.5);
+
+}
+
+div.sidebar ul {
+	list-style-type: none;
+	margin: 3%;
+	padding: 0;
+	padding-top: 5px;
+	padding-left: 2px;
+}
+
+div.sidebar ul li {
+	font-size: 14px;
+}
+
+div.sidebar ul li a {
+	display: block;
+	width: 100px;
+	padding: 10px;
+	text-decoration: none;
+	color: rgb(50, 50, 50);
+	transition: all 200ms ease;
+}
+
+div.sidebar nav a:hover {
+    margin-left: 5px;
+}
+
+
+/***************
+BODY
+***************/
+
+body {
+	width: 70%;
+	margin: 0 auto;
+	font-family: 'Muli', sans-serif;
+	color: rgb(50, 50, 50);
+	background: url(../../img/playstation-pattern.png);
+}
+
+main {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 20px;
+	background-color: white;
+	min-height: 700px;
+}
+
+div.container img {
+	width: 96%
+	margin: 1%;
+/*	padding-top: 20px;*/
+}
+
+div.container {
+	padding: 5px;
+	font-size: 18px;
+}
+
+.backtotop {
+	opacity: 0.5;
+	position: fixed;
+	right: 30px;
+	bottom: 50px;
+	transition: all 100ms ease;
+}
+
+.backtotop:hover{
+	opacity: 1;
+}
+
+
+
+/*************************
+CONTAINER
+*************************/
+.container{
+    width:80%;
+    margin:0 auto;
+    padding-left: 4%;
+    padding-top: 20px;
+    margin-left: 18%;
+}
+
+.polaroid {
+	position: relative;
+	width: 40%;
+	display: inline-block;
+	margin: 20px;
+}
+
+.polaroid object {
+	width: 100%;
+	height: auto;
+	border: 5px solid rgb(200,200,200);
+	border-bottom:35px solid rgb(200,200,200);
+}
+
+.polaroid p {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	color: black;
+	bottom: 0px;
+	font-size: 16px;
+}
+
+
+/**************************
+VIDEOS
+**************************/
+
+.single_video {
+
+	margin: 1%;
+	display: inline-block;
+}
+
+object {
+	width: 100%;
+	height: auto;
+	display: inline-block;
+	overflow: hidden;
+}
+
+
+
+/**************************
+SEARCH BAR
+**************************/
+.search img {
+	position: fixed;
+	right: 2%;
+	top: 5%;
+	opacity: 0.7;
+}
+
+.search img:hover {
+	opacity: 1;
+}
+
+
+/*********************
+FOOTER
+*********************/
+
+footer {
+	float: right;
+}
+
+.clear {
+	clear: both;
+	height: 0;
+}
+
+
+/*******************
+MEDIA QUERIES
+*******************/
+
+/* Tablet Portrait size to Base 996px */
+@media only screen and (min-width: 768px) and (max-width: 995px) {
+	body {
+		width: 80%;
+	}
+
+	main {
+		padding: 10px;
+	}
+	
+	.view h2 {
+		font-size: 22px;
+	}
+
+}
+
+/* All Mobile Sizes */
+@media only screen and (max-width: 767px) {
+	body {
+		width: 85%;
+	}
+	
+	ul.menu li {
+		font-size: 12px;
+	}
+
+	.view h2 {
+		font-size: 18px;
+	}
+
+
+}
