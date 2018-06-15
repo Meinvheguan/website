@@ -1,7 +1,7 @@
 <?php
 
 // Demand a GET parameter
-
+session_start();
 require_once "pdo.php";
 $failure = false;
 if ( isset($_POST['Name']) && isset($_POST['Email']) && isset($_POST['Password'])) {
@@ -9,15 +9,32 @@ if ( isset($_POST['Name']) && isset($_POST['Email']) && isset($_POST['Password']
     $failure = "Name is required";
   }
   else{
-    $stmt = $pdo->prepare('INSERT INTO users(name, email, password) VALUES (:mk, :yr, :mi)');
-    $stmt->execute(array(
-            ':mk' => $_POST['Name'],
-            ':yr' => $_POST['Email'],
-            ':mi' => $_POST['Password'])
-        );
-    $success = "Record inserted";
-    echo('<p style="color: green;">'.htmlentities($success)."</p>\n");
-    header("Location:login.php");//To prevent the form resubmission when refreshing the page
+    $sql = "SELECT name FROM users
+        WHERE email = :em";
+
+    $stmt1 = $pdo->prepare($sql);//escape
+    $stmt1->execute(array(':em' => $_POST['Email']));
+    $row = $stmt1->fetch(PDO::FETCH_ASSOC);
+
+    // var_dump($row);  //see the array
+   if ( $row ) {//input in the database or not
+     $_SESSION['error'] = "You are already a member!";
+      header('Location:signup.php');
+      return;
+   }
+   else{
+     $stmt = $pdo->prepare('INSERT INTO users(name, email, password) VALUES (:mk, :yr, :mi)');
+     $stmt->execute(array(
+             ':mk' => $_POST['Name'],
+             ':yr' => $_POST['Email'],
+             ':mi' => $_POST['Password'])
+         );
+     $success = "Record inserted";
+     echo('<p style="color: green;">'.htmlentities($success)."</p>\n");
+     $_SESSION['name'] = htmlentities($_POST['Name']);
+     header("Location:../index.php");//To prevent the form resubmission when refreshing the page
+     return;
+   }
 
   }
 }
@@ -28,15 +45,15 @@ if ( $failure !== false ) {
 }
 // If the user requested logout go back to index.php
 if ( isset($_POST['logout']) ) {
-    header('Location: index.php');
+    header('Location: ../index.php');
     return;
 }
-$stmt = $pdo->query("SELECT name, email, password FROM users");
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-foreach ($rows as $rows){
-  echo $rows['name'].$rows['email'].$rows['password']."\n";
-
-}
+// $stmt = $pdo->query("SELECT name, email, password FROM users"); // debug code
+// $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// foreach ($rows as $rows){
+//   echo $rows['name'].$rows['email'].$rows['password']."\n";
+//
+// }
 
 ?>
 <!DOCTYPE html>
@@ -45,6 +62,11 @@ foreach ($rows as $rows){
 <title>Sign up Page</title>
 <?php require_once "bootstrap.php"; ?>
 </head>
+<?php
+if(isset($_SESSION['error'])){
+  echo $_SESSION['error'];
+}
+?>
 <body>
 <div class="container">
 <h1>Please Sign up</h1>
