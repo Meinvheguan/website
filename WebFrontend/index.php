@@ -1,8 +1,11 @@
 <?php
 session_start();
-// if(isset($_GET['name'])){ //if the user has logged in
-//   header("Location:/backend/logedin.php?name=".urlencode($_GET['name']));
-// }
+if(isset($_POST["submit"])){ //if the user has logged in
+  $name = $_POST["submit"];
+  $_SESSION["subject"] = $name;
+  header("Location:backend/computerscience.php");
+  return;
+}
 ?>
 
 
@@ -96,7 +99,9 @@ if (!isset($_SESSION['name'])){//if there is no logged session?>
                 <div class="mask">
                     <h2>Computer Science</h2>
                     <p>a sample description. Aenean in felis nec leo euismod vestibulum. Aliquam vehicula suscipit volutpat. Donec cursus pellentesque mauris, cursus congue justo molestie non. Phasellus ut lorem magna.</p>
-                    <a href="#item" class="info">Learn More</a>
+                    <form action = "index.php" method = "POST">
+                      <!-- <a type = "submit" name = "submit" class="info">Learn More</a> -->
+                      <button type = "submit" class = "info" name = "submit" value = "1">Learn More</button>
                 </div>
             </div>
         </div>
@@ -105,9 +110,11 @@ if (!isset($_SESSION['name'])){//if there is no logged session?>
             <div class="view">
                 <img src="img/5.jpg" alt="pic"/>
                 <div class="mask">
-                    <h2>Math</h2>
-                    <p>a sample description. Pellentesque phardui suscipit, quis convallis lectus ultrices. Quisque eleifend faucibus eros. </p>
-                    <a href="#item" class="info">Learn More</a>
+                    <h2>Econ</h2>
+                    <p>a sample description. Aenean in felis nec leo euismod vestibulum. Aliquam vehicula suscipit volutpat. Donec cursus pellentesque mauris, cursus congue justo molestie non. Phasellus ut lorem magna.</p>
+                    <form action = "index.php" method = "POST">
+                      <!-- <a type = "submit" name = "submit" class="info">Learn More</a> -->
+                      <button type = "submit" class = "info" name = "submit" value = "2">Learn More</button>
                 </div>
             </div>
         </div>
@@ -183,7 +190,7 @@ if (!isset($_SESSION['name'])){//if there is no logged session?>
           <nav class="botbar">
               <ul class="menu2">
                   <li><a href="backend/logout.php">Log Out</a></li>
-
+                  <li><a href="backend/uploading.php">Upload Video</a></li>
               </ul>
           </nav>
       </div>
