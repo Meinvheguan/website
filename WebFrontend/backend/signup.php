@@ -60,7 +60,7 @@ if ( isset($_POST['logout']) ) {
 <html>
 <head>
 <title>Sign up Page</title>
-<?php require_once "bootstrap.php"; ?>
+
 </head>
 <?php
 if(isset($_SESSION['error'])){
