@@ -8,7 +8,7 @@ if (isset($_POST['submit'])){
   print_r($_FILES);
 
   move_uploaded_file($temp, "uploads/".$name);
-  $url = "http://localhost/frontend2018/WebFrontend/backend/uploads/$name";
+  $url = "http://localhost/website/WebFrontend/backend/uploads/$name";
   $sql = "INSERT INTO videos (video_name, url, videos.catagory_id) VALUES (:nm, :lk, :cat)";
   $stml = $pdo->prepare($sql);
   $stml->execute(array(":nm" => $name,

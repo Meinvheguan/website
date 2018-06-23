@@ -11,12 +11,11 @@ if (isset($_SESSION["subject"])){
     $url = $row["url"];
     // echo $row["url"];
     echo "watch ";
-    echo('<a href='.$row['url'].'>'.$name . '</a> / ');
-    // <form action = "computerscience.php" method = "POST">
-    //   <button type = "submit"  name = "submit" value = $url>Watch.$name</button>
-  }
+    echo('<a href='.$row['url'].'>'.$name . '</a> / ');?>
 
-}
+    <video width="320" height="240" controls>
+      <source src=<?php echo $url ?> type="video/mp4"> Your browser does not support the video tag.
+</video>
+<?php  }
 
-// session_destroy();
-?>
+}?>

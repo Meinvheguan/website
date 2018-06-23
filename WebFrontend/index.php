@@ -6,6 +6,12 @@ if(isset($_POST["submit"])){ //if the user has logged in
   header("Location:backend/computerscience.php");
   return;
 }
+if(isset($_POST["search"])){ //if the user has logged in
+  $search = $_POST["search"];
+  $_SESSION["search"] = $search;
+  header("Location:backend/search.php");
+  return;
+}
 ?>
 
 
@@ -42,6 +48,10 @@ if(isset($_POST["submit"])){ //if the user has logged in
 	<main>
 
     <h1><a href="index.html">Company Name</a></h1>
+    <form action = "index.php" method = "POST">
+      <!-- <a type = "submit" name = "submit" class="info">Learn More</a> -->
+      <input type = "text" name = "search" placeholder = "Search for Videos..."/>
+      <input type = "submit" value = "Search"/>
 <?php
 if (!isset($_SESSION['name'])){//if there is no logged session?>
 	<header>
