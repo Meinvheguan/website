@@ -6,6 +6,12 @@ if(isset($_POST["submit"])){ //if the user has logged in
   header("Location:backend/computerscience.php");
   return;
 }
+if(isset($_POST["search"])){ //if the user has logged in
+  $search = $_POST["search"];
+  $_SESSION["search"] = $search;
+  header("Location:backend/search.php");
+  return;
+}
 ?>
 
 
@@ -42,6 +48,10 @@ if(isset($_POST["submit"])){ //if the user has logged in
 	<main>
 
     <h1><a href="index.html">Company Name</a></h1>
+    <form action = "index.php" method = "POST">
+      <!-- <a type = "submit" name = "submit" class="info">Learn More</a> -->
+      <input type = "text" name = "search" placeholder = "Search for Videos..."/>
+      <input type = "submit" value = "Search"/>
 <?php
 if (!isset($_SESSION['name'])){//if there is no logged session?>
 	<header>
@@ -64,31 +74,23 @@ if (!isset($_SESSION['name'])){//if there is no logged session?>
 
 
 <!--
-
 	<div class="container">
-
         <div class="view">
         	<img src="img/cs.jpg" alt="image for cs category" title="cs" width="100%">
         		<a href="#"><h2>Computer Science</h2></a>
                 <p>Description: Vestibulum ornare sem eros, vel venenatis leo venenatis eu. Nam diam ex, viverra ac tortor non, rhoncus facilisis diam. Fusce malesuada urna quis sem maximus vehicula. Morbi id condimentum lorem.</p>
         </div>
-
         <div class="view">
         	<img src="img/math.jpg" alt="image for math category" title="math" width="100%">
         		<a href="#"><h2>Math</h2></a>
                 <p>Description: Proin leo nulla, vulputate eget pretium eu, gravida vitae nulla.</p>
         </div>
-
         <div class="view">
         	<img src="img/science.jpg" alt="image for science category" title="science" width="100%">
         		<a href="#"><h2>Science</h2></a>
                 <p>Description: Vestibulum ornare sem eros, vel venenatis leo venenatis eu. Nam diam ex, viverra ac tortor non, rhoncus facilisis diam. Fusce malesuada urna quis sem maximus vehicula. Morbi id condimentum lorem. </p>
         </div>
-
-
     </div>
-
-
 -->
 
     <div class="container clearfix content">
@@ -229,7 +231,6 @@ if (!isset($_SESSION['name'])){//if there is no logged session?>
                 TweenLite.to(window, 0.5, {scrollTo:0});
             });
         });
-
     </script>
 
 
